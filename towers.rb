@@ -50,7 +50,10 @@ class TowerOfHanoi
   def validate_input
     puts "Enter move >"
     player_input = gets.chomp
-    exit_game if player_input == "q"
+    if player_input == "q"
+      exit_game
+      return
+    end
     
     #Check for valid input
     player_input = player_input.gsub(/[^1-3]/, '') #Strip all but digits 1-3
@@ -90,12 +93,13 @@ class TowerOfHanoi
 
   def game_loop
     while @keep_playing do
+
+      # render board
+      render
+
       #take_input and adjusts board
       change_board(validate_input)
 
-      # puts "in game_loop" #testing
-      # render board
-      render
       #check for win
       check_win?
     end
